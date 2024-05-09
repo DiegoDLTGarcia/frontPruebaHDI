@@ -10,17 +10,20 @@
                     Propietario
                 </th>
                 <th>
-                    Raza
+                    Nombre
                 </th>
                 <th>
-                    Nombre
+                    Raza
                 </th>
                 <th>
                     Edad
                 </th>
                 <th>
+                    Especie
+                </th>
+                <th>
                     Acciones
-                    <p-button type="submit" label="" [rounded]="true" severity="success">
+                    <p-button type="submit" label="" [rounded]="true" severity="success" (click)="agregarMascota()">
                         <i class="fas fa-plus"></i>
                     </p-button>
                 </th>
@@ -33,14 +36,84 @@
                 <td>{{ mascota.nombre }}</td>
                 <td>{{ mascota.objRaza.nombreRaza }}</td>
                 <td>{{ mascota.edad }}</td>
+                <td>{{ mascota.objRaza.objEspecie.nombreEspecie }}</td>
                 <td>
                     <div class="button-container">
-                        <p-button type="submit" label="" [rounded]="true" severity="warning">
+                        <p-button (click)="editarMascota(mascota.idMascota)" label="" [rounded]="true" severity="warning">
                             <i class="fas fa-edit"></i>
                         </p-button>
-                        <p-button type="submit" label="" [rounded]="true" severity="danger">
+                        
+                        <p-dialog header="Editar datos de la mascota" [(visible)]="editarVisible" [style]="{ width: '25rem' }">
+                            <div class="flex align-items-center gap-3 mb-3">
+                                <label for="propietario" class="font-semibold w-6rem">Propietario</label>
+                                <br>
+                                <input pInputText id="propietario" class="flex-auto" [(ngModel)]="mascota.objPropietario.nombre" autocomplete="off"/>
+                              </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="nombre" class="font-semibold w-6rem">Nombre</label>
+                              <br>
+                              <input pInputText id="nombre" class="flex-auto" [(ngModel)]="mascota.nombre" autocomplete="off" />
+                            </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="raza" class="font-semibold w-6rem">Raza</label>
+                              <br>
+                              <input pInputText id="raza" class="flex-auto" [(ngModel)]="mascota.objRaza.nombreRaza" autocomplete="off" />
+                            </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                                <label for="especie" class="font-semibold w-6rem">Raza</label>
+                                <br>
+                                <input pInputText id="especie" class="flex-auto" [(ngModel)]="mascota.objRaza.objEspecie.nombreEspecie" autocomplete="off" />
+                              </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="edad" class="font-semibold w-6rem">Edad</label>
+                              <br>
+                              <input pInputText id="edad" class="flex-auto" [(ngModel)]="mascota.edad" autocomplete="off" />
+                            </div>
+                            <br>
+                            <div class="flex justify-content-end gap-2">
+                              <p-button label="Cancelar" severity="secondary" (click)="editarVisible = false"></p-button>
+                              <p-button label="Guardar" (click)="guardarCambios()"></p-button>
+                            </div>
+                          </p-dialog>
+                          
+                        
+                        <p-button type="submit" label="" [rounded]="true" severity="danger"
+                            (click)="eliminarMascota(mascota.idMascota)">
                             <i class="fas fa-trash-alt"></i>
                         </p-button>
+
+                        <p-dialog header="Elimiar Mascota" [(visible)]="eliminarVisible" [style]="{ width: '25rem' }">
+                            <div class="flex align-items-center gap-3 mb-3">
+                                <label for="propietario" class="font-semibold w-6rem">Propietario</label>
+                                <br>
+                                <input pInputText id="propietario" class="flex-auto" [(ngModel)]="mascota.objPropietario.nombre" autocomplete="off" [disabled]="true" />
+                              </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="nombre" class="font-semibold w-6rem">Nombre</label>
+                              <br>
+                              <input pInputText id="nombre" class="flex-auto" [(ngModel)]="mascota.nombre" autocomplete="off" [disabled]="true" />
+                            </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="raza" class="font-semibold w-6rem">Raza</label>
+                              <br>
+                              <input pInputText id="raza" class="flex-auto" [(ngModel)]="mascota.objRaza.nombreRaza" autocomplete="off" [disabled]="true" />
+                            </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                                <label for="especie" class="font-semibold w-6rem">Raza</label>
+                                <br>
+                                <input pInputText id="especie" class="flex-auto" [(ngModel)]="mascota.objRaza.objEspecie.nombreEspecie" autocomplete="off" [disabled]="true"  />
+                              </div>
+                            <div class="flex align-items-center gap-3 mb-3">
+                              <label for="edad" class="font-semibold w-6rem">Edad</label>
+                              <br>
+                              <input pInputText id="edad" class="flex-auto" [(ngModel)]="mascota.edad" autocomplete="off" [disabled]="true" />
+                            </div>
+                            <br>
+                            <div class="flex justify-content-end gap-2">
+                              <p-button label="Cancelar" severity="secondary" (click)="eliminarVisible = false"></p-button>
+                              <p-button label="Eliminar" (click)="borrarMascota(mascota.idMascota)" severity="danger"></p-button>
+                            </div>
+                          </p-dialog>
                     </div>
                 </td>
             </tr>

@@ -7,6 +7,10 @@ import { TreeTableModule } from 'primeng/treetable';
 import { TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { ButtonModule } from 'primeng/button';
     MascotasRoutingModule,
     TreeTableModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+    BrowserAnimationsModule,
+    FormsModule
   ]
 })
 export class MascotasModule { }
