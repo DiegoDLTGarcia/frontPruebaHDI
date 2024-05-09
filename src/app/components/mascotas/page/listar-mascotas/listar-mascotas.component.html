@@ -1,0 +1,49 @@
+<div class="card">
+    <h2>Catálogo de Mascotas</h2>
+    <p-table [value]="mascotas">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    Id Mascota
+                </th>
+                <th>
+                    Propietario
+                </th>
+                <th>
+                    Raza
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Edad
+                </th>
+                <th>
+                    Acciones
+                    <p-button type="submit" label="" [rounded]="true" severity="success">
+                        <i class="fas fa-plus"></i>
+                    </p-button>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mascota>
+            <tr>
+                <td>{{ mascota.idMascota }}</td>
+                <td>{{ mascota.objPropietario.nombre }}</td>
+                <td>{{ mascota.nombre }}</td>
+                <td>{{ mascota.objRaza.nombreRaza }}</td>
+                <td>{{ mascota.edad }}</td>
+                <td>
+                    <div class="button-container">
+                        <p-button type="submit" label="" [rounded]="true" severity="warning">
+                            <i class="fas fa-edit"></i>
+                        </p-button>
+                        <p-button type="submit" label="" [rounded]="true" severity="danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </p-button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
