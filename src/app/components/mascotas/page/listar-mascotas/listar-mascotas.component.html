@@ -73,7 +73,7 @@
               <div class="flex align-items-center gap-3 mb-3">
                 <label for="propietario" class="font-semibold w-6rem">Propietario</label>
                 <br>
-                <input pInputText id="propietario" class="flex-auto" [(ngModel)]="mascota.objPropietario.nombre"
+                <input pInputText id="propietario" class="flex-auto" [(ngModel)]="mascota.idPropietario"
                   autocomplete="off" />
               </div>
               <div class="flex align-items-center gap-3 mb-3">
@@ -84,14 +84,14 @@
               <div class="flex align-items-center gap-3 mb-3">
                 <label for="raza" class="font-semibold w-6rem">Raza</label>
                 <br>
-                <input pInputText id="raza" class="flex-auto" [(ngModel)]="mascota.objRaza.nombreRaza"
+                <input pInputText id="raza" class="flex-auto" [(ngModel)]="mascota.idRaza"
                   autocomplete="off" />
               </div>
               <div class="flex align-items-center gap-3 mb-3">
-                <label for="especie" class="font-semibold w-6rem">Raza</label>
+                <label for="especie" class="font-semibold w-6rem">Especie</label>
                 <br>
                 <input pInputText id="especie" class="flex-auto" [(ngModel)]="mascota.objRaza.objEspecie.nombreEspecie"
-                  autocomplete="off" />
+                  autocomplete="off" [disabled]="true"/>
               </div>
               <div class="flex align-items-center gap-3 mb-3">
                 <label for="edad" class="font-semibold w-6rem">Edad</label>
@@ -101,7 +101,7 @@
               <br>
               <div class="flex justify-content-end gap-2">
                 <p-button label="Cancelar" severity="secondary" (click)="editarVisible = false"></p-button>
-                <p-button label="Guardar" (click)="guardarCambios()"></p-button>
+                <p-button label="Guardar" (click)="guardarCambios(mascota.idMascota)"></p-button>
               </div>
             </p-dialog>
 

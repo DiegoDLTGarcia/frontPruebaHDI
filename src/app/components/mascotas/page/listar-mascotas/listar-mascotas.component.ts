@@ -3,6 +3,7 @@ import { MascotasService } from '../../services/mascotas.service';
 import { Mascota } from '../../interfaces/mascotas';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatosMascota } from '../../interfaces/mascotas';
 
 @Component({
   selector: 'app-listar-mascotas',
@@ -77,10 +78,35 @@ export class ListarMascotasComponent implements OnInit {
     );
   }
 
-  guardarCambios(): void {
-    // Implementa la lógica para guardar los cambios de la mascota editada
+  guardarCambios(idMascota: number): void {
+    const mascota = this.mascotas.find(m => m.idMascota === idMascota);
+    
+    if (mascota) { // Check if mascota is not undefined
+      const datosMascota: DatosMascota = {
+        IdPropietario: mascota.idPropietario,
+        nombre: mascota.nombre,
+        IdRaza: mascota.idRaza,
+        edad: mascota.edad
+      };
+      console.log(datosMascota);
+      
+  
+      this.mascotasService.editarMascota(idMascota, datosMascota).subscribe(
+        (respuesta: DatosMascota) => {
+          console.log("Mascota actualizada con éxito", respuesta);
+          this.editarVisible = false;
+          this.getMascotas();
+        },
+        error => {
+          console.error("Error al actualizar la mascota", error);
+        }
+      );
+    } else {
+      console.error("No se encontró la mascota con el ID proporcionado");
+    }
   }
-
+  
+  
   eliminarMascota(id: number): void {
     this.eliminarVisible = true;
   }

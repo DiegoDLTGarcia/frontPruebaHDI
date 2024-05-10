@@ -22,3 +22,9 @@ export interface Mascota {
   };
 }
 
+export interface DatosMascota {
+  IdPropietario: number; 
+  nombre: string;      
+  IdRaza: number;       
+  edad: number;      
+}

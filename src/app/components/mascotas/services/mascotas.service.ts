@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { Mascota } from '../interfaces/mascotas';
 import { catchError } from 'rxjs/operators';
+import { DatosMascota } from '../interfaces/mascotas';
 
 
 
@@ -35,7 +36,7 @@ export class MascotasService {
     return this.http.get<any>(url);
   }
 
-  editarMascota(idMascota: number, mascotaActualizada: Mascota): Observable<any> {
+  editarMascota(idMascota: number, mascotaActualizada: DatosMascota): Observable<any> {
     const url = `${this.apiURL}/EditarMascota/${idMascota}`;
     const httpOptions = {
       headers: new HttpHeaders({
