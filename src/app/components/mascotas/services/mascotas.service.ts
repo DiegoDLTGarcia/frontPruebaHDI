@@ -20,6 +20,16 @@ export class MascotasService {
     return this.http.get<Mascota[]>(url);
   }
 
+  registrarMascota(mascota: Mascota): Observable<any> {
+    const url = `${this.apiURL}/RegristrarMascota`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>(url, mascota, httpOptions);
+  }
+
   buscarMascotaPorId(id: number): Observable<any> {
     const url = `${this.apiURL}/BuscarMascota/${id}`;
     return this.http.get<any>(url);
